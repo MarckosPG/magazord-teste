@@ -573,6 +573,7 @@
                             'success'
                         );
                         fnRenderPessoas("");
+                        fnRenderContatos("");
                     }
                 }
             })
