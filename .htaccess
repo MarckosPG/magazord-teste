@@ -1,0 +1,12 @@
+Options -Indexes
+RewriteEngine On
+RewriteBase /
+
+# Evite reescrever diretórios existentes
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Evite reescrever arquivos existentes
+RewriteCond %{REQUEST_FILENAME} !-f
+
+# Roteie todas as solicitações para index.php com a variável 'router'
+RewriteRule ^(.*)$ index.php?router=$1 [QSA,L]

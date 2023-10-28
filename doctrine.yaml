@@ -1,0 +1,11 @@
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: localhost
+        dbname: magazord_db
+        user: root
+        password: 
+    orm:
+        auto_generate_proxy_classes: true
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
