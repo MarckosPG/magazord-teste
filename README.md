@@ -2,7 +2,7 @@
 
 1 - Baixe o servidor de sua escolha (WampServer, Xampp, etc...)
 
-2 - Copie todos os arquivos da pasta do projeto para a pasta "www" ou "htdocs" do servidor que você baixou geralmente localizado no C:\, *se a pasta www ou htdocs do servidor tiver algum arquivo, apague tudo antes de colar o projeto, pois no prejeto tem uma configuração na classe "Router" para para referenciar o caminho da raiz do prejeto.
+2 - Copie todos os arquivos da pasta do projeto para a pasta "www" ou "htdocs" do servidor que você baixou geralmente localizado no C:\, *se a pasta www ou htdocs do servidor tiver algum arquivo, apague tudo antes de colar o projeto, pois no prejeto tem uma configuração na classe "Router" para para referenciar o caminho da raiz do prejeto. (fique a vontade para mudar as regras do .htaccess, se precisar colocar em uma pasta específica)
 
 3 - Inicialize o serviror, garanta que o apache e mysql estejam iniciados também.
 
