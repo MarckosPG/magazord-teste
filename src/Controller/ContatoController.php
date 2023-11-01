@@ -7,6 +7,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use utils\RenderView;
 use src\Entity\Contato;
 use src\Entity\Pessoa;
+use utils\Validations;
 
 class ContatoController extends RenderView {
 
@@ -100,22 +101,48 @@ class ContatoController extends RenderView {
 
                 $pessoa = $entityManager->find(Pessoa::class, $idPessoa);
 
-                if ($id) {
-                    $contato = $entityManager->find(Contato::class, $id);
-                    if ($contato) {
+                switch($tipo){
+                    case 0:
+                        $phoneValid = Validations::validateCellPhone($descricao);
+                        if(!$phoneValid){
+                            $response = ['staus' => 400, 'message' => 'Celular inválido!', 'data' => false];
+                            header('Content-Type: application/json');
+                            echo json_encode($response);
+                            exit;
+                        }
+                        break;
+                    case 1:
+                        $emailValid = Validations::validateEmail($descricao);
+                        if(!$emailValid){
+                            $response = ['staus' => 400, 'message' => 'Email inválido!', 'data' => false];
+                            header('Content-Type: application/json');
+                            echo json_encode($response);
+                            exit;
+                        }
+                        break;
+                }
+
+                if($pessoa){
+                    if ($id) {
+                        $contato = $entityManager->find(Contato::class, $id);
+                        if ($contato) {
+                            $contato->setTipo($tipo);
+                            $contato->setDescricao($descricao);
+                            $contato->setPessoa($pessoa);
+                        }
+                    } else {
+                        $contato = new Contato();
                         $contato->setTipo($tipo);
                         $contato->setDescricao($descricao);
                         $contato->setPessoa($pessoa);
                     }
-                } else {
-                    $contato = new Contato();
-                    $contato->setTipo($tipo);
-                    $contato->setDescricao($descricao);
-                    $contato->setPessoa($pessoa);
-                }
 
-                $entityManager->persist($contato);
-                $entityManager->flush();
+                    $entityManager->persist($contato);
+                    $entityManager->flush();
+
+                }else{
+                    $response = ['staus' => 400, 'message' => 'Não há nenhuma pessoa com esse ID!', 'data' => false];
+                }
 
                 $response = ['staus' => 200, 'message' => 'Contato salvo com sucesso!', 'data' => true];
 

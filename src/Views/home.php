@@ -682,6 +682,12 @@
                             'success'
                         );
                         fnRenderContatos("");
+                    }else{
+                        Swal.fire(
+                            'Erro!',
+                            data?.message,
+                            'error'
+                        );
                     }
                 }
             })

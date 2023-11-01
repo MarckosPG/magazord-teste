@@ -16,4 +16,5 @@ class Config {
 
 }
 
-require_once "./utils/render.php";
+require_once "./utils/RenderView.php";
+require_once "./utils/Validations.php";

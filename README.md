@@ -12,4 +12,3 @@
 
 6 - Abra o navegador digite localhost
 
-
